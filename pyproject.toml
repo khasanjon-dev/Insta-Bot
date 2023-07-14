@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "insta-bot"
+version = "0.1.0"
+description = ""
+authors = ["Khasanjon <khasanjon.eng@gmail.com>"]
+readme = "README.md"
+packages = [{include = "insta_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+moviepy = "^1.0.3"
+instaloader = "^4.10"
+python-dotenv = "^1.0.0"
+pillow = "^10.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
