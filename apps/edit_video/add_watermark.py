@@ -18,7 +18,7 @@ def add_watermark(input_video: str, watermark: str, output_video: str):
 
     logo = (mp.ImageClip(watermark)
             .set_duration(video.duration)
-            # .resize(height=50)  # if you need to resize...
+            # .resize(height=50)
             .margin(right=8, top=8, opacity=0)
             .set_pos(("right", "top")))
 
@@ -26,7 +26,6 @@ def add_watermark(input_video: str, watermark: str, output_video: str):
     final.write_videofile(output_video)
 
 
-# Example usage
 input_video_path = 'today/' + input_video_path()
 watermark_path = "watermark.png"
 output_video_path = "video/watermark_video.mp4"
