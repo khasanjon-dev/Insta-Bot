@@ -1,8 +1,7 @@
 import glob
 import os
 
-import moviepy.video.fx.resize
-from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
+import moviepy.editor as mp
 
 
 def input_video_path() -> str:
@@ -14,27 +13,17 @@ def input_video_path() -> str:
         return relative_path
 
 
-def add_watermark(input_video_path: str, watermark_path: str, output_video_path: str):
-    # Load the video clip
-    video = VideoFileClip(input_video_path)
+def add_watermark(input_video: str, watermark: str, output_video: str):
+    video = mp.VideoFileClip(input_video)
 
-    # Load the watermark image
-    watermark = ImageClip(watermark_path)
+    logo = (mp.ImageClip(watermark)
+            .set_duration(video.duration)
+            # .resize(height=50)  # if you need to resize...
+            .margin(right=8, top=8, opacity=0)
+            .set_pos(("right", "top")))
 
-    # Resize the watermark if necessary
-    watermark = moviepy.video.fx.resize.resize(watermark, height=50)
-
-    # Define the position of the watermark on the video
-    watermark_position = (video.size[0] - watermark.size[0] - 10, 10)
-
-    # Create a composite video clip with the watermark overlay
-    video_with_watermark = CompositeVideoClip([
-        video,
-        watermark.set_position(watermark_position).set_duration(video.duration)
-    ])
-
-    # Save the processed video
-    video_with_watermark.write_videofile(output_video_path, codec="libx264")
+    final = mp.CompositeVideoClip([video, logo])
+    final.write_videofile(output_video)
 
 
 # Example usage
