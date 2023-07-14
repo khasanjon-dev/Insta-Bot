@@ -104,6 +104,6 @@ dmypy.json
 .pyre/
 .pytype/
 cython_debug/
-bot/download_video/today
-bot/download_video/watermark.png
-bot/download_video/video
+bot/edit_video/today
+bot/edit_video/watermark.png
+bot/edit_video/video
